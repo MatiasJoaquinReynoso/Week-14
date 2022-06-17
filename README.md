@@ -15,8 +15,8 @@ WebdriverIO is a progressive automation framework built to automate modern web a
 
 You can use WebdriverIO to automate:
 
-- 🌐  :modern web applications written in React, Vue, Angular, Svelte or other frontend frameworks
+- 🌐  : modern web applications written in React, Vue, Angular, Svelte or other frontend frameworks
 
-- 📱  :hybrid or native mobile applications running in an emulator/simulator or on a real device
+- 📱  : hybrid or native mobile applications running in an emulator/simulator or on a real device
 
-- 💻 :native desktop applications (e.g. written with Electron.js)
+- 💻 : native desktop applications (e.g. written with Electron.js)
