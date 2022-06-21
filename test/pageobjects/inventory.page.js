@@ -29,5 +29,4 @@ class InventoryPage {
         await this.removeBoltshirt.click();
     }
 }
-
 module.exports = new InventoryPage();
