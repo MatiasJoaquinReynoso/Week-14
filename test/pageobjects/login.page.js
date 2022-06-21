@@ -14,14 +14,14 @@ class LoginPage {
     async setPassword(password) {
         await this.inputPassword.setValue(password);
     }
-    //Metodos
+    //Methods
+    open () {
+        return browser.url('http://www.saucedemo.com/');
+    }
     async login(username, password) {
         await this.setUsername(username);
         await this.setPassword(password);
         await this.btnLogin.click();
-    }
-    open () {
-        return browser.url('http://www.saucedemo.com/');
     }
 }
 module.exports = new LoginPage();

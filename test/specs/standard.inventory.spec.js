@@ -23,13 +23,13 @@ describe('Inventory page test', ()=> {
             await Menus.logoutSidebar.click();
             await expect(browser).toHaveUrl('https://www.saucedemo.com/');
         });
-        it('Testing sidebar cross functionality', async ()=> {
+        it('Testing X from sidebar functionality', async ()=> {
             await Menus.burgerMenu.click();
             await expect(Menus.crossSidebar).toExist();
             await Menus.crossSidebar.click();
             await expect(browser).toHaveUrl('https://www.saucedemo.com/inventory.html');
         });
-        it('Testing on click on Backpack image', async ()=> {
+        it('Testing on click Backpack image', async ()=> {
             await InventoryPage.imgBackpack.click();
             await expect(browser).toHaveUrl('https://www.saucedemo.com/inventory-item.html?id=4');
             await InventoryPage.backBtn.click();
