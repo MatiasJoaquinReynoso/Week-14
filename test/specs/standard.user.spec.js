@@ -110,6 +110,15 @@ describe ('Standard user login testing',() => {
         await expect(CartPage.backpackPrice).toHaveTextContaining('29.99');
         await expect(CartPage.boltshirtPrice).toHaveTextContaining('15.99');
     })
+    it('Test the title should be YOUR CART', async ()=> {
+        await expect(CartPage.cartTitle).toHaveTextContaining('YOUR CART');
+    })
+    it('Test the title for label', async ()=> {
+        await expect(CartPage.cartLabel).toHaveTextContaining('Sauce Labs Backpack');
+    })
+    it('Test the text for label', async ()=> {
+        await expect(CartPage.labelText).toHaveTextContaining('carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.');
+    })
     it('Test the remove button', async ()=> {
         await LoginPage.open();
         await LoginPage.login('standard_user', 'secret_sauce');

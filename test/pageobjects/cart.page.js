@@ -7,6 +7,9 @@ class CartPage {
     get removeBackpack () {return $('#remove-sauce-labs-backpack')}
     get continueBtn () {return $('#continue-shopping')}
     get checkoutBtn () {return $('#checkout')}
+    get cartTitle () {return $('.header_secondary_container > span')}
+    get cartLabel () {return $('#item_4_title_link > div')}
+    get labelText () {return $('.inventory_item_desc')}
     //Methods
     async buttonsClick() {
         await this.removeBackpack.click();
