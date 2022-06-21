@@ -3,6 +3,7 @@
 The objective of this week is to use the Swag Labs website as a test base, there we will perform automated e2e tests with the WebdriverIO framework.
 
 ## What is Webdriver.IO?
+
 WebdriverIO is a progressive automation framework built to automate modern web and mobile applications. It simplifies the interaction with your app and provides a set of plugins that help you create a scalable, robust and stable test suite.
 
 ### It is designed to be:
@@ -15,8 +16,21 @@ WebdriverIO is a progressive automation framework built to automate modern web a
 
 You can use WebdriverIO to automate:
 
-- 🌐  :modern web applications written in React, Vue, Angular, Svelte or other frontend frameworks
+- 🌐: modern web applications written in React, Vue, Angular, Svelte or other frontend frameworks
 
-- 📱  :hybrid or native mobile applications running in an emulator/simulator or on a real device
+- 📱: hybrid or native mobile applications running in an emulator/simulator or on a real device
 
-- 💻 :native desktop applications (e.g. written with Electron.js)
+- 💻: native desktop applications (e.g. written with Electron.js)
+
+## How to use wdio test?
+
+1- Download the repo
+
+2- Install dependencies:
+```
+npm i
+```
+3- To start the test:
+```
+npm run test
+```
