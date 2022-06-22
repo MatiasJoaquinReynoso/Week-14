@@ -9,6 +9,7 @@ class InventoryPage {
     get addBoltshirt () {return $('#add-to-cart-sauce-labs-bolt-t-shirt');}
     get removeBoltshirt () {return $('#remove-sauce-labs-bolt-t-shirt');}
     get backBtn () {return $('#back-to-products');}
+    get titleInv() {return $('.header_secondary_container > span');}
     //Methods
     open () {
         return browser.url('http://www.saucedemo.com/inventory.html')
