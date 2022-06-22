@@ -5,7 +5,6 @@ const CartPage = require('../pageobjects/cart.page');
 const CheckoutPage = require('../pageobjects/checkout.page');
 const Confirm = require('../pageobjects/confirm.page');
 const Order = require('../pageobjects/buyorder.page');
-const inventoryPage = require('../pageobjects/inventory.page');
 
 describe ('All users tests',() => {
 
@@ -354,11 +353,90 @@ describe ('All users tests',() => {
         const elem = await $('#item_4_img_link > img')
         await elem.waitForDisplayed({ timeout: 5000 });
     })
-    it('Continue shopping button have delay to redirect', async () => {
+    it('The title from inventory should be displayed after 8 seconds delay when click continue-shopping', async () => {
         await LoginPage.open();
-        await LoginPage.login('problem_user', 'secret_sauce');
+        await LoginPage.login('performance_glitch_user', 'secret_sauce');
         await browser.url('https://www.saucedemo.com/inventory.html')
-        await InventoryPage.addBackpack.click();
+        await InventoryPage.imgBackpack.click();
         await Menus.cartMenu.click();
+        await browser.url('https://www.saucedemo.com/cart.html')
+        await CartPage.continueBtn.click();
+        const title = await $('.header_secondary_container > span')
+        await title.waitForDisplayed({ timeout: 8000 });
+    })
+    it('Add items to the cart', async ()=> {
+        await Menus.cartMenu.click();
+    })
+    it('Testing Title', async ()=> {
+        await browser.url('https://www.saucedemo.com/cart.html')
+        await expect(CartPage.cartTitle).toHaveTextContaining('YOUR CART');
+    })
+    it('Testing checkout button functionality', async ()=> {
+        await CartPage.checkoutBtn.click();
+    })
+    it('Empty first name should display error', async ()=> {
+        await browser.url('https://www.saucedemo.com/checkout-step-one.html')
+        await CheckoutPage.setName('');
+        await CheckoutPage.continueBtn.click();
+        await CheckoutPage.setZip('');
+        await expect(CheckoutPage.errorContainer).toHaveText('Error: First Name is required');
+        await CheckoutPage.crossErrorBtn.click();
+        await expect(CheckoutPage.errorContainer).not.toBeDisplayed();
+    })
+    it('Empty last name should display error', async ()=> {
+        await CheckoutPage.setName('Matias');
+        await CheckoutPage.setLastName('');
+        await CheckoutPage.setZip('');
+        await CheckoutPage.continueBtn.click();
+        await expect(CheckoutPage.errorContainer).toHaveText('Error: Last Name is required');
+        await CheckoutPage.crossErrorBtn.click();
+        await expect(CheckoutPage.errorContainer).not.toBeDisplayed();
+    })
+    it('Empty ZIP code should display error', async ()=> {
+        await CheckoutPage.setName('Matias');
+        await CheckoutPage.setLastName('Reynoso');
+        await CheckoutPage.setZip('');
+        await CheckoutPage.continueBtn.click();
+        await expect(CheckoutPage.errorContainer).toHaveText('Error: Postal Code is required');
+        await CheckoutPage.crossErrorBtn.click();
+        await expect(CheckoutPage.errorContainer).not.toBeDisplayed();
+        })
+    it('Testing cancel button redirect to the cart', async ()=> {
+        await CheckoutPage.cancelBtn.click();
+        await expect(browser).toHaveUrl('https://www.saucedemo.com/cart.html')
+    })
+    it('Testing the continue button redirect to the confirm buy order', async ()=> {
+        await CartPage.checkoutBtn.click()
+        await CheckoutPage.loginCheckout('Matias', 'Reynoso', '2000');
+        await expect(browser).toHaveUrl('https://www.saucedemo.com/checkout-step-two.html')
+    })
+    it('Testing Title', async ()=> {
+        await expect(Confirm.titlePage).toHaveTextContaining('CHECKOUT: OVERVIEW');
+    })
+    it('Testing cancel button redirect to the inventory page', async ()=> {
+        await Confirm.cancelBtn.click();
+        await expect(browser).toHaveUrl('https://www.saucedemo.com/inventory.html')
+    })
+    it('Testing the FINISH button redirect to the buy order success page', async ()=> {
+        await Menus.cartMenu.click();
+        await CartPage.checkoutBtn.click();
+        await CheckoutPage.loginCheckout('Matias', 'Reynoso', '2000');
+        await Confirm.finishBtn.click();
+        await expect(browser).toHaveUrl('https://www.saucedemo.com/checkout-complete.html')
+    })
+    it('Testing Title', async ()=> {
+        await expect(Confirm.titlePage).toHaveTextContaining('CHECKOUT: COMPLETE!');
+    })
+    it('Testing Bot Image to be displayed', async () => {
+        await expect(Order.botImg).toBeDisplayed()
+    })
+    it('Testing Header text', async ()=> {
+        await expect(Order.h2Text).toHaveText('THANK YOU FOR YOUR ORDER');
+    })
+    it('Click back home button redirect to inventory and after 8 seconds should display the title', async ()=> {
+        await Order.backBtn.click();
+        await expect(browser).toHaveUrl('https://www.saucedemo.com/inventory.html')
+        const title = await $('.header_secondary_container > span')
+        await title.waitForDisplayed({ timeout: 8000 });
     })
 })
