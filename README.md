@@ -34,3 +34,6 @@ npm i
 ```
 npm run test
 ```
+
+
+<p align="right"><i>Created by Matias Reynoso</i></p>
