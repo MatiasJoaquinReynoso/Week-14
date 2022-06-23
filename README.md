@@ -1,6 +1,6 @@
 # RR COURSE - 'QA Automation Testing' - 14th WEEK PROJECT
 
-The objective of this week is to use the [SwagLabs](https://www.saucedemo.com/) website as a test base, there we will perform automated e2e tests with the WebdriverIO framework.
+The objective of this week is to use the [Swag Labs](https://www.saucedemo.com/) website as a test base, there we will perform automated e2e tests with the WebdriverIO framework.
 
 ## What is Webdriver.IO?
 
